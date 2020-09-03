@@ -3,14 +3,9 @@ package com.ogungor.madridbook;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 
-import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.content.pm.PermissionInfo;
-import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.ImageDecoder;
 import android.net.Uri;
@@ -45,8 +40,8 @@ public class DetailsActivity extends AppCompatActivity {
 
     public void selectimage(View view) {
 
-       Permission permission=new Permission();
-       permission.PermissionImage();
+       Permission permission=new Permission(this);
+       permission.permissionImage();
 
         // Permission permission=new Permission();
 
@@ -103,9 +98,9 @@ public class DetailsActivity extends AppCompatActivity {
         imageArray = byteArrayOutputStream.toByteArray();
 
 
-        Madrids madrids = new Madrids(madridName, position, uniformNumber, imageArray);
-        DatabaseActivity databaseActivity = new DatabaseActivity(this, "HelloMadrids", null, 1);
-        databaseActivity.AddDatabaseActivity(madrids);
+        Players players = new Players(madridName, position, uniformNumber, imageArray);
+        DbHelper dbHelper = new DbHelper(this, "HelloMadrids", null, 1);
+        dbHelper.addDbPlayers(players);
 
     }
 }

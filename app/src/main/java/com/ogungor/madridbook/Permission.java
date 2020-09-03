@@ -1,6 +1,7 @@
 package com.ogungor.madridbook;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -11,20 +12,23 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
-public class Permission extends AppCompatActivity {
+public class Permission {
 
-    public Permission() {
+    private Activity mActivity ;
+
+    public Permission(Activity activity) {
+        this.mActivity=activity;
+
+
     }
 
-    public void PermissionImage() {
+    public void permissionImage() {
 
-        DetailsActivity detailsActivity=new DetailsActivity();
-
-        if (ContextCompat.checkSelfPermission(detailsActivity, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(detailsActivity, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
+        if (ContextCompat.checkSelfPermission(mActivity, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(mActivity, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
         } else {
             Intent intentToGalery = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-            startActivityForResult(intentToGalery, 2);
+            mActivity.startActivityForResult(intentToGalery, 2);
         }
 
     }

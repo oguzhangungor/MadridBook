@@ -1,6 +1,6 @@
 package com.ogungor.madridbook;
 
-public class Madrids {
+public class Players {
 
     private String name;
     private String position;
@@ -15,7 +15,7 @@ public class Madrids {
         this.image = image;
     }
 
-    public Madrids(String name, String position, String uniformNumber, byte[] image) {
+    public Players(String name, String position, String uniformNumber, byte[] image) {
         this.name = name;
         this.position = position;
         this.uniformNumber = uniformNumber;
